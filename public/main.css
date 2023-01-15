@@ -3,6 +3,12 @@
   border: 1px solid
 }
 
-.notes {
-  color: blue;
+body {
+  background-color: black;
+  font-family: sans-serif;
+  color: white;
+}
+
+.places {
+  color: lightgreen;
 }

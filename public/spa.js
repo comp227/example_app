@@ -1,36 +1,36 @@
-var notes = []
+var places = []
 
-var redrawNotes = function() {
+var redrawPlaces = function() {
   var ul = document.createElement('ul')
-  ul.setAttribute('class', 'notes')
+  ul.setAttribute('class', 'places')
 
-  notes.forEach(function (note) {
+  places.forEach(function (place) {
     var li = document.createElement('li')
 
     ul.appendChild(li);
-    li.appendChild(document.createTextNode(note.content))
+    li.appendChild(document.createTextNode(place.content))
   })
 
-  var notesElement = document.getElementById("notes")
-  if (notesElement.hasChildNodes()) {
-    notesElement.removeChild(notesElement.childNodes[0]);
+  var placesElement = document.getElementById("places")
+  if (placesElement.hasChildNodes()) {
+    placesElement.removeChild(placesElement.childNodes[0]);
   }
-  notesElement.appendChild(ul)
+  placesElement.appendChild(ul)
 }
 
 var xhttp = new XMLHttpRequest()
 
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-    notes = JSON.parse(this.responseText)
-    redrawNotes()
+    places = JSON.parse(this.responseText)
+    redrawPlaces()
   }
 }
 
-xhttp.open("GET", "/exampleapp/data.json", true)
+xhttp.open("GET", "/data.json", true)
 xhttp.send()
 
-var sendToServer = function (note) {
+var sendToServer = function (place) {
   var xhttpForPost = new XMLHttpRequest()
   xhttpForPost.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 201) {
@@ -38,24 +38,24 @@ var sendToServer = function (note) {
     }
   }
 
-  xhttpForPost.open("POST", '/exampleapp/new_note_spa', true)
+  xhttpForPost.open("POST", '/new_place_spa', true)
   xhttpForPost.setRequestHeader("Content-type", "application/json")
-  xhttpForPost.send(JSON.stringify(note));
+  xhttpForPost.send(JSON.stringify(place));
 }
 
 window.onload = function (e) {
-  var form = document.getElementById("notes_form")
+  var form = document.getElementById("places_form")
   form.onsubmit = function (e) {
     e.preventDefault()
 
-    var note = {
+    var place = {
       content: e.target.elements[0].value,
       date: new Date()
     }
 
-    notes.push(note)
+    places.push(place)
     e.target.elements[0].value = ""
-    redrawNotes()
-    sendToServer(note)
+    redrawPlaces()
+    sendToServer(place)
   }
 }
