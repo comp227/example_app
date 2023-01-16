@@ -8,7 +8,7 @@ var redrawPlaces = function() {
     var li = document.createElement('li')
 
     ul.appendChild(li);
-    li.appendChild(document.createTextNode(place.content))
+    li.appendChild(document.createTextNode(place.name))
   })
 
   var placesElement = document.getElementById("places")
@@ -49,7 +49,7 @@ window.onload = function (e) {
     e.preventDefault()
 
     var place = {
-      content: e.target.elements[0].value,
+      name: e.target.elements[0].value,
       date: new Date()
     }
 

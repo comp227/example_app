@@ -12,7 +12,7 @@ xhttp.onreadystatechange = function () {
       var li = document.createElement('li')
 
       ul.appendChild(li);
-      li.appendChild(document.createTextNode(place.content))
+      li.appendChild(document.createTextNode(place.name))
     })
 
     document.getElementById("places").appendChild(ul)

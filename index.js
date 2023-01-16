@@ -12,21 +12,21 @@ app.use(boyParser())
 
 const places = [
     {
-        content: 'El Pazcifico',
+        name: 'El Pazcifico',
         date: new Date('2023-01-13T17:30:31.098Z'),
     },
     {
-        content: 'Mazaa Kabob House',
+        name: 'Mazaa Kabob House',
         date: new Date('2023-01-13T18:39:34.091Z'),
     },
     {
-        content: 'Journey to the Dumpling',
+        name: 'Journey to the Dumpling',
         date: new Date('2023-01-13T19:20:14.298Z'),
     },
 ]
 
 const isValidPlace = place => {
-    return typeof place === 'object' && typeof place.content === 'string' && !isNaN(new Date(place.date).getTime())
+    return typeof place === 'object' && typeof place.name === 'string' && !isNaN(new Date(place.date).getTime())
 }
 
 const createPlace = place => {
@@ -39,7 +39,7 @@ const createPlace = place => {
 
 const formatPlace = place => {
     return {
-        content: place.content.substring(0, 200),
+        name: place.name.substring(0, 200),
         date: new Date(place.date),
     }
 }
@@ -149,7 +149,7 @@ router.post('/new_place_spa', (req, res) => {
 router.post('/new_place', (req, res) => {
     if (typeof req.body.place === 'string') {
         createPlace(formatPlace({
-            content: req.body.place,
+            name: req.body.place,
             date: new Date()
         }))
     }
