@@ -103,7 +103,7 @@ const getFronPageHtml = (placeCount) => {
           <h1>COMP 227 Example</h1>
           <p>Are you ready to travel around the area? We have <strong>${placeCount} place${(placeCount === 1 ? '' : 's')}</strong> for you.</p>
           <h2><a href='${PATH_PREFIX}/places'>Places</a></h2>
-          <img src='bear.png' width='450' />
+          <img src='travel.jpg' width='450' />
         </div>
       </body>
     </html>
